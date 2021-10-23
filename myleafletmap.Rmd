@@ -1,0 +1,43 @@
+---
+title: "My Leaflet Map"
+author: "Me"
+date: "23/10/2021"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## My Leaflet Map
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+library(leaflet)
+my_map <- leaflet() %>% addTiles()
+
+```
+
+Marker with a picture of the Eiffel tower and a
+
+```{r}
+eiffelTowerIcon <- makeIcon(
+   iconUrl = "https://www.city2map.com/images/where/eiffeltower.jpg",
+   iconWidth = 31*408/255, iconHeight = 31,
+   iconAnchorX = 31*408/255/2, iconAnchorY = 16
+)
+```
+
+Add the marker to the map and display the map.
+```{r}
+eiffelTowerPopup <- c("<a href= 'https://www.toureiffel.paris/en/the-monument/key-figures' >Eiffel Tower<br><img src='https://www.city2map.com/images/where/eiffeltower.jpg' width='240' height='181'  alt='Eiffel Tower in Paris' title='Eiffel Tower'></a>")
+
+my_map %>%
+   addTiles() %>%
+   addMarkers(lat=48.8584, lng=2.2945, popup = eiffelTowerPopup)
+```
+
